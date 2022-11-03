@@ -16,6 +16,7 @@ This was a test I did for the company Hero Digital following the brief below.
 ### Figma Prototypes Links
 
 [Desktop](https://www.figma.com/proto/X5e9USJ3ikairh6MTN4XGs/Hero-Digital-Test?node-id=51%3A1874)
+
 [Mobile](https://www.figma.com/proto/X5e9USJ3ikairh6MTN4XGs/Hero-Digital-Test?node-id=6%3A367)
 
 ---
