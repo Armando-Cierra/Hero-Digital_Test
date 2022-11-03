@@ -1,0 +1,46 @@
+@use '@/styles/Mixins' as *;
+
+.footer{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 900;
+  width: 100%;
+  background: var(--background_high);
+  padding: 24px 0;
+  @include flexColumn(center, center);
+  border-top: 1px solid var(--border);
+  .footer__isotype{
+    color: var(--text);
+    height: 24px;
+  }
+  .footer__divider{
+    width: 32px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--contrast);
+    margin: 16px 0;
+  }
+  .footer__socialNetworks{
+    @include flexRow(center, center);
+    gap: 1rem;
+    margin-bottom: 12px;
+    .footer__socialNetworks__icon{
+      color: var(--text_muted);
+      height: 24px;
+      width: 24px;
+    }
+  }
+  .footer__rights{
+    color: var(--text_muted);
+    font-size: var(--body-sm);
+  }
+}
+
+body[data-theme='light']{
+  .footer{
+    .footer__isotype{
+      color: #181818
+    }
+  }
+}

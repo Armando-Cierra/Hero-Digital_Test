@@ -1,0 +1,249 @@
+@use '@/styles/Mixins' as *;
+
+.cardBox{
+  position: relative;
+  width: 100%;
+  height: 360px;
+  .cardBox__card{
+    position: absolute;
+    background: var(--background_high);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    transition: ease-in-out .5s;
+    .cardBox__card__header{
+      position: relative;
+      width: 100%;
+      height: 110px;
+      flex-shrink: 0;
+      overflow: hidden;
+      .cardBox__card__header__img{
+        width: 100%;
+        height: 100%;
+        position: relative;
+        object-fit: cover;
+      }
+      .cardBox__card__header__gradient{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, rgb(38, 38, 38), rgba(38, 38, 38, .3));
+      }
+      .cardBox__card__header__featured{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        @include flexRow(center, center);
+        padding: 4px 16px;
+        padding-left: 32px;
+        background: var(--contrast);
+        clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+        span{
+          color: var(--text);
+          margin-right: 8px;
+        }
+        svg{
+          width: 12px;
+          height: 12px;
+          color: var(--text);
+        }
+      }
+    }
+    .cardBox__card__textBox{
+      padding: 16px 8px;
+      height: calc(100% - 110px);
+      @include flexColumn(space-around, flex-start);
+      .cardBox__card__textBox__title{
+        position: relative;
+        padding-left: 12px;
+        margin-bottom: 12px;
+        &::after{
+          position: absolute;
+          left: 0;
+          top: 0;
+          content: '';
+          width: 3px;
+          height: 100%;
+          border-radius: 4px;
+          background: var(--contrast);
+        }
+        h2{
+          font-size: var(--header-1)
+        }
+      }
+      .cardBox__card__textBox__description{
+        width: 100%;
+        p{
+          color: var(--text_muted);
+          display: -webkit-box;
+          -webkit-line-clamp: 6;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      }
+      h3{
+        width: 100%;
+        text-align: center;
+        font-size: var(--body-lg);
+        margin-bottom: 12px;
+      }
+      .cardBox__card__textBox__tagBox{
+        @include flexRow(center, center, 4px);
+        flex-wrap: wrap;
+        max-height: 115px;
+        overflow-y: auto;
+        .cardBox__card__textBox__tagBox__tag{
+          flex-shrink: 0;
+          padding: 2px 4px;
+          background: var(--background_low);
+          border-radius: 4px;
+          span{
+            color: var(--text);
+            font-size: var(--body-sm);
+          }
+        }
+      }
+    }
+    .cardBox__card__footer{
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      padding: 8px 8px;
+      @include flexRow(flex-end, center);
+      a{
+        @include flexRow(center, center);
+        display: inline-block;
+        padding: 4px 0;
+        span{
+          color: var(--contrast);
+        }
+        svg{
+          width: 8px;
+          height: 8px;
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+  
+  .cardBox__card--back{
+    top: 0;
+    left: 0;
+    .cardBox__card__header{
+      .cardBox__card__header__img{
+        transform: scalex(-1);
+      }
+    }
+    .cardBox__card__textBox{
+      height: auto;
+    }
+  }
+}
+
+//Animation Properties
+.cardBox{
+  .cardBox__card{
+    backface-visibility: hidden;
+  }
+  .cardBox__card--front{
+    transform: perspective(1500px) rotateY(0deg);
+  }
+  .cardBox__card--back{
+    transform: perspective(1500px) rotateY(180deg);
+  }
+}
+
+.cardBox--mobile{
+  cursor: pointer;
+}
+
+.cardBox--mobile--active{
+  .cardBox__card--front{
+    transform: perspective(1500px) rotateY(180deg);
+    
+  }
+  .cardBox__card--back{
+    transform: perspective(1500px) rotateY(360deg);
+    border-color: var(--contrast);
+    box-shadow: 0 0 12px var(--contrast);
+  }
+}
+
+.cardBox--desktop{
+  &:hover{
+    .cardBox__card--front{
+      transform: perspective(1500px) rotateY(180deg);
+    }
+    .cardBox__card--back{
+      transform: perspective(1500px) rotateY(360deg);
+      border-color: var(--contrast);
+      box-shadow: 0 0 12px var(--contrast);
+    }
+  }
+}
+
+//Media Queries
+@include screen(desktop){
+  .cardBox{
+    height: 400px;
+    .cardBox__card{
+      .cardBox__card__header{
+        height: 150px;
+        .cardBox__card__header__featured{
+          svg{
+            width: 12px;
+            height: 12px;
+          }
+          span{
+            font-size: var(--body-lg);
+          }
+        }
+      }
+      .cardBox__card__textBox{
+        padding: 24px;
+        .cardBox__card__textBox__title{
+          h2{
+            font-size: var(--header-2);
+          }
+        }
+        .cardBox__card__textBox__description{
+          p{
+            font-size: var(--body-lg);
+          }
+        }
+        h3{
+          font-size: var(--header-1);
+        }
+        .cardBox__card__textBox__tagBox{
+          gap: 8px;
+          max-height: 150px;
+          .cardBox__card__textBox__tagBox__tag{
+            padding: 4px 8px;
+            span{
+              font-size: var(--body-lg);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+body[data-theme='light']{
+  .cardBox{
+    .cardBox__card{
+      .cardBox__card__header{
+        .cardBox__card__header__featured{
+          span, svg{
+            color: var(--text_contrast)
+          }
+        }
+      }
+    }
+  }
+}

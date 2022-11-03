@@ -1,0 +1,58 @@
+@font-face{
+  font-family: 'Avenir';
+  src: url('../assets/AvenirLTStd-Book.otf');
+}
+
+@font-face{
+  font-family: 'AvenirBold';
+  src: url('../assets/AvenirLTStd-Black.otf');
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  outline: none;
+  font-family: var(--regular);
+  box-sizing: border-box;
+  h1, h2, h3, h4, h5, h6, p, span, label, a{
+    font-size: var(--body);
+    font-weight: normal;
+    color: var(--text);
+  }
+  a{
+    color: var(--contrast);
+    text-decoration: none;
+  }
+
+  //Scrollbar
+  &::-webkit-scrollbar{
+    width: 8px;
+    height: 8px;
+  }
+  &::-webkit-scrollbar-thumb{
+    background: var(--border_hover);
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb:hover,
+  &::-webkit-scrollbar-thumb:active {
+    background: var(--border_hover);
+  }
+
+  &::-webkit-scrollbar-thumb:hover,
+  &::-webkit-scrollbar-thumb:active {
+    background: var(--border);
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--background_high);
+    border-radius: 4px;
+  }
+}
+
+body{
+  width: 100%;
+  min-height: 100vh;
+  background: var(--background);
+  overflow: hidden;
+  overflow-y: auto;
+}

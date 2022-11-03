@@ -1,0 +1,10 @@
+@use '@/styles/Mixins' as *;
+
+.template{
+  .template__content{
+    position: relative;
+    min-height: 100vh;
+    padding-top: 56px;
+    padding-bottom: calc(155px + 32px);
+  }
+}

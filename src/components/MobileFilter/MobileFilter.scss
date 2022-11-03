@@ -1,0 +1,200 @@
+@use '@/styles/Mixins' as *;
+
+.mobileFilter{
+  position: sticky;
+  top: 56px;
+  left: 0;
+  z-index: 900;
+  padding: 16px;
+  width: 100%;
+  background: var(--background_low);
+  border-bottom: 1px solid var(--border_higher);
+  @include flexRow(center, center);
+  .mobileFilter__dropdown{
+    width: 100%;
+    position: relative;
+    .mobileFilter__dropdown__box{
+      width: 100%;
+      height: 42px;
+      background: var(--background);
+      border: 1px solid var(--border_higher);
+      border-radius: 8px;
+      padding: 0 16px;
+      @include flexRow(space-between, center);
+      cursor: pointer;
+      transition: ease-in-out .25s;
+      &:hover{
+        border-color: var(--border_higher_hover);
+        svg, span{
+          color: var(--text);
+        }
+      }
+      svg, span{
+        pointer-events: none;
+        color: var(--text_muted);
+        transition: ease-in-out .25s;
+      }
+      svg{
+        height: 16px;
+        width: 16px;
+      }
+      span{
+        width: 100%;
+        font-size: var(--body-lg);
+      }
+    }
+    .mobileFilter__dropdown__box--active{
+      border-color: var(--contrast);
+      &:hover{
+        background: var(--background_high);
+        border-color: var(--contrast_high);
+        svg, span{
+          color: var(--contrast_high);
+        }
+      }
+      svg, span{
+        color: var(--contrast);
+      }
+    }
+    .mobileFilter__dropdown__menu{
+      position: absolute;
+      top: calc(100% + 4px);
+      background: var(--background);
+      border: 1px solid var(--border_higher);
+      border-radius: 8px;
+      padding: 8px 0;
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      overflow-y: auto;
+      opacity: 1;
+      box-shadow: 4px 4px 12px rgba(0, 0, 0, .15);
+      transition: 0.25s;
+      .mobileFilter__dropdown__menu__item{
+        height: 36px;
+        background: var(--background);
+        @include flexRow(flex-start, center);
+        padding: 12px;
+        padding-left: 24px;
+        cursor: pointer;
+        &:hover{
+          background: var(--background_high);
+          .mobileFilter__dropdown__menu__item__text{
+            color: var(--text);
+          }
+        }
+        .mobileFilter__dropdown__menu__item__checkbox{
+          pointer-events: none;
+          width: 16px;
+          height: 16px;
+          background: var(--background_high);
+          border-radius: 4px;
+          margin-right: 8px;
+          border: 1px solid var(--border);
+        }
+        .mobileFilter__dropdown__menu__item__text{
+          pointer-events: none;
+          font-size: var(--body-lg);
+          color: var(--text);
+          transition: ease-in-out .25s;
+        }
+      }
+      .mobileFilter__dropdown__menu__item--checked{
+        background: var(--background_high);
+        position: relative;
+        &::after{
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 3px;
+          height: 100%;
+          background: var(--contrast);
+        }
+        .mobileFilter__dropdown__menu__item__checkbox{
+          border-color: var(--contrast);
+          background: var(--text);
+          position: relative;
+          box-shadow: 0 0 4px var(--contrast);
+          @include flexRow(center, center);
+          &::after{
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 5px;
+            border-bottom: 3px solid var(--contrast);
+            border-left: 3px solid var(--contrast);
+            transform: rotate(-45deg);
+            top: 2px;
+            left: 1px;
+          }
+        }
+        .mobileFilter__dropdown__menu__item__text{
+          color: var(--contrast);
+        }
+
+      }
+    }
+    .mobileFilter__dropdown__menu--hidden{
+      pointer-events: none;
+      transform: translateY(15px);
+      opacity: 0;
+    }
+  }
+  .mobileFilter__resetButton{
+    flex-shrink: 1;
+    margin-left: 12px;
+    padding: 0 12px;
+    height: 42px;
+    background: linear-gradient(to top, var(--background_high), var(--background));
+    color: var(--text);
+    border: 1px solid var(--border_higher);
+    border-radius: 8px;
+    cursor: pointer;
+    &:hover {
+      background: var(--background_high);
+      border-color: var(--border_higher_hover);
+    }
+  }
+}
+
+body[data-theme='light']{
+  .mobileFilter{
+    .mobileFilter__dropdown{
+      .mobileFilter__dropdown__box{
+        span, svg{
+          color: var(--text);
+        }
+      }
+      .mobileFilter__dropdown__box--active{
+        svg, span{
+          color: var(--contrast);
+        }
+      }
+      .mobileFilter__dropdown__menu{
+        background: var(--background_high);
+        .mobileFilter__dropdown__menu__item{
+          background: var(--background_high);
+          &:hover{
+            background: var(--background);
+          }
+        }
+        .mobileFilter__dropdown__menu__item--checked{
+          background: var(--background_low);
+          &:hover{
+            background: var(--background_low);
+            .mobileFilter__dropdown__menu__item__text{
+              color: var(--contrast);
+            }
+          }
+          .mobileFilter__dropdown__menu__item__checkbox{
+            background: var(--contrast);
+            &::after{
+              border-color: var(--text_contrast);
+            }
+          }
+        }
+      }
+    }
+  }
+}

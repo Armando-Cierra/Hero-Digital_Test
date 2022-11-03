@@ -1,0 +1,93 @@
+@use '@/styles/Mixins' as *;
+
+.themeMenu{
+  position: absolute;
+  right: 16px;
+  z-index: 1000;
+  .themeMenu__button{
+    background: var(--background_high);
+    width: 44px;
+    height: 44px;
+    @include flexRow(center, center);
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: ease-in-out .25s;
+    &:hover{
+      background: var(--background);
+    }
+    svg{
+      pointer-events: none;
+      width: 16px;
+      height: 16px;
+      color: var(--text_muted);
+    }
+  }
+  .themeMenu__menu{
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    width: 125px;
+    padding:8px 0;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, .25);
+    transition: ease-in-out .25s;
+    .themeMenu__menu__header{
+      display: inline-block;
+      padding: 8px;
+      font-size: var(--body-sm);
+      color: var(--text_muted);
+    }
+    .themeMenu__menu__item{
+      padding: 12px 16px;
+      padding-left: 24px;
+      cursor: pointer;
+      transition: ease-in-out .25s;
+      &:hover{
+        background: var(--background_high);
+      }
+    }
+    .themeMenu__menu__item--active{
+      background: var(--background_high);
+      position: relative;
+      &::after{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 3px;
+        height: 100%;
+        background: var(--contrast);
+      }
+      span{
+        color: var(--contrast);
+      }
+    }
+  }
+  .themeMenu__menu--hiden{
+    opacity: 0;
+    transform: translateY(-15px);
+    pointer-events: none;
+  }
+}
+
+body[data-theme='light']{
+  .themeMenu{
+    .themeMenu__button{
+      &:hover{
+        background: var(--background_low);
+      }
+      svg{
+        color: var(--text);
+      }
+    }
+    .themeMenu__menu{
+      background: var(--background_high);
+      .themeMenu__menu__item--active{
+        background: var(--background_low);
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+# .eslintignore
+
+node_modules
+.eslintrc.cjs
+.prettierignore
+.prettierrc
+vite.config.ts
+build
+dist
+
+.DS_Store
+
+_.css
+_.scss
+\*.svg

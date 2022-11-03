@@ -1,0 +1,63 @@
+//Mixins for fonts
+@mixin grid($columns, $gap: 0) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+}
+
+@mixin inlineFlexRow ($justifyContent: flex-start, $alignItems: flex-start, $gap: 0) {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+  gap: $gap;
+}
+
+@mixin inlineFlexColumn ($justifyContent: flex-start, $alignItems: flex-start, $gap: 0) {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+  gap: $gap;
+}
+
+@mixin flexRow ($justifyContent: flex-start, $alignItems: flex-start, $gap: 0) {
+  display: flex;
+  flex-direction: row;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+  gap: $gap;
+}
+
+@mixin flexColumn ($justifyContent: flex-start, $alignItems: flex-start, $gap: 0) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+  gap: $gap;
+}
+
+//=========================================================
+//Media query mixin
+
+$desktop: 1025px;
+$tablet: 641px;
+
+@mixin screen($range) {
+
+  @if $range == tablet {
+    @media screen and (min-width: $tablet) {
+      @content;
+    }
+  }
+
+  @else if $range == desktop {
+    @media screen and (min-width: $desktop) {
+      @content;
+    }
+  }
+
+  @else {
+    @error '"#{$range}" is not a valid grid range. Available grid ranges are: tablet and desktop';
+  }
+}

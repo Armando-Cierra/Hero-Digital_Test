@@ -1,0 +1,8 @@
+# .prettierignore
+
+node_modules/**
+build
+dist
+vite.config.ts
+
+.DS_Store
